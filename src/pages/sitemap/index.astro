@@ -1,0 +1,86 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { mainNavigation } from '../../data/navigation';
+import { getCollection } from 'astro:content';
+import allSlugs from '../../data/slugs.json';
+
+const blogPosts = await getCollection('blog');
+const navLinks = mainNavigation.flatMap((item) => [
+  { label: item.label, href: item.href },
+  ...(item.children ?? []),
+]);
+
+const blogLinks = blogPosts.map((post) => ({
+  label: post.data.title,
+  href: `/${post.id}/`,
+}));
+
+const staticPages = [
+  { label: 'Home', href: '/' },
+  { label: 'Over ons', href: '/over-ons/' },
+  { label: 'Contact', href: '/contact/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Laatste berichten', href: '/laatste-berichten/' },
+  { label: 'Veiligheid', href: '/veiligheid/' },
+  { label: 'Rekken & Manden', href: '/rekken-en-manden/' },
+];
+
+const productLinks = (allSlugs as string[])
+  .filter((slug) => slug.startsWith('beste-'))
+  .map((slug) => ({
+    label: slug.replace(/^beste-/, '').split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' '),
+    href: `/${slug}/`,
+  }));
+
+const allLinks = [...staticPages, ...navLinks, ...blogLinks, ...productLinks];
+const uniqueLinks = Array.from(new Map(allLinks.map((l) => [l.href, l])).values()).sort((a, b) =>
+  a.label.localeCompare(b.label, 'nl')
+);
+---
+<PageLayout title="Sitemap" description="Overzicht van alle pagina's op InterieurGuy.nl.">
+  <Header slot="header" />
+  <div class="container">
+    <header class="page-header reveal">
+      <h1>Sitemap</h1>
+      <p>Overzicht van alle pagina's op InterieurGuy.nl.</p>
+    </header>
+    <nav class="sitemap-list reveal" aria-label="Sitemap">
+      <ul>
+        {uniqueLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <Footer slot="footer" />
+</PageLayout>
+
+<style>
+  .sitemap-list ul {
+    columns: 2;
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .sitemap-list li {
+    break-inside: avoid;
+    margin-bottom: 0.75rem;
+  }
+
+  .sitemap-list a {
+    color: var(--color-heading);
+    transition: color var(--transition);
+  }
+
+  .sitemap-list a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 599px) {
+    .sitemap-list ul {
+      columns: 1;
+    }
+  }
+</style>

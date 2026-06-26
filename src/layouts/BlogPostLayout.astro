@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ArticleLayout from './ArticleLayout.astro';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, pubDate, featuredImage, imageAlt } = entry.data;
+---
+<ArticleLayout
+  title={title}
+  description={description}
+  image={featuredImage || '/images/2023/07/1-2.jpg'}
+  date={pubDate.toISOString()}
+>
+  <slot name="header" slot="header" />
+  <slot />
+  <slot name="footer" slot="footer" />
+</ArticleLayout>

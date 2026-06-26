@@ -1,0 +1,45 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<PageLayout
+  title="Laatste berichten"
+  description="Bekijk de laatste berichten en interieurtips op InterieurGuy.nl."
+>
+  <Header slot="header" />
+  <div class="container">
+    <header class="page-header reveal">
+      <p class="page-header__label">Blog</p>
+      <h1>Laatste berichten</h1>
+      <p>Wil jij een professionele inkijk in wat er op dit moment de trends zijn op het gebied van interieur voor mannen? Lees dan snel verder.</p>
+    </header>
+    <div class="blog-grid">
+      {posts.map((post) => (
+        <BlogCard entry={post} />
+      ))}
+    </div>
+  </div>
+  <Footer slot="footer" />
+</PageLayout>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-width: 767px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

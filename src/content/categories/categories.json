@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "blog",
+    "name": "Blog",
+    "parent": ""
+  },
+  {
+    "slug": "linkedin",
+    "name": "LinkedIn",
+    "parent": ""
+  },
+  {
+    "slug": "uncategorized",
+    "name": "Uncategorized",
+    "parent": ""
+  },
+  {
+    "slug": "wonen",
+    "name": "Wonen",
+    "parent": ""
+  },
+  {
+    "slug": "",
+    "name": "",
+    "parent": ""
+  }
+]
