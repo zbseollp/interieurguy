@@ -1,0 +1,27 @@
+---
+import { aboutSection } from '../data/homepage';
+---
+<section class="about section section--soft reveal">
+  <div class="container about__inner">
+    <h2>{aboutSection.title}</h2>
+    <p>{aboutSection.description}</p>
+  </div>
+</section>
+
+<style>
+  .about__inner {
+    max-width: 52rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .about__inner h2 {
+    margin-bottom: 1rem;
+  }
+
+  .about__inner p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+</style>

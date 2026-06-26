@@ -1,0 +1,26 @@
+---
+import { ctaSection } from '../data/homepage';
+---
+<section class="cta section reveal">
+  <div class="container cta__inner">
+    <p>{ctaSection.description}</p>
+    <a href={ctaSection.ctaHref} class="btn btn--accent">{ctaSection.ctaLabel}</a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--color-bg-soft);
+    text-align: center;
+  }
+
+  .cta__inner {
+    max-width: 42rem;
+  }
+
+  .cta__inner p {
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+</style>

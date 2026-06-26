@@ -1,0 +1,74 @@
+---
+import { reviewsSection, latestReviews } from '../data/homepage';
+---
+<section class="reviews section section--white reveal">
+  <div class="container">
+    <div class="section-header">
+      <h2>{reviewsSection.title}</h2>
+      <p>{reviewsSection.description}</p>
+    </div>
+    <div class="card-grid">
+      {latestReviews.map((review) => (
+        <article class="review-card">
+          <a href={review.href} class="review-card__image-link">
+            <img src={review.image} alt={review.alt} width="374" height="201" loading="lazy" />
+          </a>
+          <div class="review-card__body">
+            <h4>
+              <a href={review.href}>{review.title}</a>
+            </h4>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .review-card {
+    background: var(--color-bg-card);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .review-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .review-card__image-link {
+    display: block;
+    overflow: hidden;
+  }
+
+  .review-card__image-link img {
+    width: 100%;
+    aspect-ratio: 374 / 201;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .review-card:hover .review-card__image-link img {
+    transform: scale(1.04);
+  }
+
+  .review-card__body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .review-card h4 {
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  .review-card h4 a {
+    color: var(--color-heading);
+    transition: color var(--transition);
+  }
+
+  .review-card h4 a:hover {
+    color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,89 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, featuredImage, imageAlt, pubDate } = entry.data;
+---
+<article class="blog-card reveal">
+  <a href={`/${entry.id}/`} class="blog-card__link">
+    <div class="blog-card__image-wrap">
+      <img
+        src={featuredImage || '/images/2023/07/1-2.jpg'}
+        alt={imageAlt || title}
+        width={800}
+        height={450}
+        loading="lazy"
+      />
+    </div>
+    <div class="blog-card__content">
+      {pubDate && (
+        <time class="blog-card__date" datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      )}
+      <h3>{title}</h3>
+      {description && <p>{description}</p>}
+    </div>
+  </a>
+</article>
+
+<style>
+  .blog-card__link {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    align-items: start;
+    transition: opacity var(--transition);
+  }
+
+  .blog-card__link:hover {
+    opacity: 0.85;
+  }
+
+  .blog-card__image-wrap {
+    overflow: hidden;
+    border-radius: var(--card-radius);
+    aspect-ratio: 4 / 3;
+    background: var(--color-bg-soft);
+  }
+
+  .blog-card__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .blog-card__content h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .blog-card__date {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .blog-card__content p {
+    font-size: 0.875rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 599px) {
+    .blog-card__link {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

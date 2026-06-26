@@ -1,0 +1,61 @@
+<form class="contact-form" action="#" method="post">
+  <div class="contact-form__field">
+    <label for="name">Naam</label>
+    <input type="text" id="name" name="name" required autocomplete="name" />
+  </div>
+  <div class="contact-form__field">
+    <label for="email">E-mailadres</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+  </div>
+  <div class="contact-form__field">
+    <label for="message">Bericht</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+  </div>
+  <button type="submit" class="btn btn--primary">Versturen</button>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 36rem;
+  }
+
+  .contact-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-form label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-heading);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--card-radius-sm);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(223, 181, 108, 0.2);
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+</style>

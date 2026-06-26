@@ -1,0 +1,70 @@
+---
+import { heroContent } from '../data/homepage';
+---
+<section class="hero reveal">
+  <div class="hero__bg" style={`background-image: url('${heroContent.backgroundImage}')`} aria-hidden="true">
+    <div class="hero__overlay"></div>
+  </div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1>{heroContent.title}</h1>
+      <p>{heroContent.description}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: clamp(320px, 45vw, 480px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero__content {
+    max-width: 34rem;
+    background: rgba(49, 49, 49, 0.88);
+    border-radius: var(--card-radius);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    backdrop-filter: blur(4px);
+  }
+
+  .hero__content h1 {
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero__content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 300;
+  }
+
+  @media (max-width: 767px) {
+    .hero__content {
+      max-width: 100%;
+    }
+  }
+</style>

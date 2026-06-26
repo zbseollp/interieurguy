@@ -1,0 +1,87 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  image: string;
+  alt: string;
+  category?: string;
+  categoryHref?: string;
+}
+
+const { slug, title, image, alt, category, categoryHref } = Astro.props;
+---
+<article class="article-card">
+  <a href={`/${slug}/`} class="article-card__image-link">
+    <img src={image} alt={alt} width="374" height="201" loading="lazy" />
+  </a>
+  <div class="article-card__body">
+    {category && (
+      <p class="article-card__category">
+        {categoryHref ? <a href={categoryHref}>{category}</a> : category}
+      </p>
+    )}
+    <h3>
+      <a href={`/${slug}/`}>{title}</a>
+    </h3>
+  </div>
+</article>
+
+<style>
+  .article-card {
+    background: var(--color-bg-card);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .article-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+  }
+
+  .article-card__image-link {
+    display: block;
+    overflow: hidden;
+  }
+
+  .article-card__image-link img {
+    width: 100%;
+    aspect-ratio: 374 / 201;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .article-card:hover .article-card__image-link img {
+    transform: scale(1.04);
+  }
+
+  .article-card__body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .article-card__category {
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-card__category a {
+    color: var(--color-muted);
+  }
+
+  .article-card h3 {
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  .article-card h3 a {
+    color: var(--color-heading);
+    transition: color var(--transition);
+  }
+
+  .article-card h3 a:hover {
+    color: var(--color-accent);
+  }
+</style>

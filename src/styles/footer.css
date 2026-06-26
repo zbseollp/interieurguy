@@ -1,0 +1,179 @@
+/* Footer matching interieurguy.nl Elementor footer */
+
+.site-footer {
+  background: var(--color-primary);
+  color: #ffffff;
+  padding-top: clamp(1.875rem, 4vw, 3.125rem);
+}
+
+.site-footer__cta {
+  position: relative;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.site-footer__cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.site-footer__cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  margin-inline: auto;
+}
+
+.site-footer__cta p {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.site-footer__top-logo img {
+  width: clamp(180px, 24vw, 260px);
+  height: auto;
+  display: block;
+}
+
+.site-footer__tagline {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #ffffff;
+}
+
+.site-footer__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  margin: 0 auto;
+}
+
+.site-footer__brand-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem 2rem;
+  padding-block: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.site-footer__brand-row img {
+  width: 140px;
+  height: auto;
+}
+
+.site-footer__quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.site-footer__quick-links a {
+  font-size: 0.875rem;
+  color: #ffffff;
+  transition: color var(--transition);
+}
+
+.site-footer__quick-links a:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.site-footer__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+
+.site-footer__social a:hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  padding-block: clamp(1.5rem, 3vw, 2rem);
+}
+
+.site-footer__heading {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0 0 0.75rem;
+}
+
+.site-footer__links p {
+  margin: 0;
+  line-height: 2;
+}
+
+.site-footer__links a {
+  font-size: 0.875rem;
+  color: #ffffff;
+  transition: color var(--transition);
+}
+
+.site-footer__links a:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__copyright {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  padding: 0.75rem 0 clamp(1.25rem, 3vw, 1.75rem);
+}
+
+@media (max-width: 1023px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .site-footer__social {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__brand-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}

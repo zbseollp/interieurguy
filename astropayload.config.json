@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "tenantSlug": "interieurguy",
+  "modules": ["blog"],
+  "blogContentPath": "src/content/blog",
+  "blogFileExtension": "mdx"
+}
