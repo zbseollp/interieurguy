@@ -1,27 +1,81 @@
 ---
 import { aboutSection } from '../data/homepage';
 ---
-<section class="about section section--soft reveal">
+<section
+  class="about reveal"
+  style={`background-image: url('${aboutSection.backgroundImage}')`}
+>
   <div class="container about__inner">
-    <h2>{aboutSection.title}</h2>
-    <p>{aboutSection.description}</p>
+    <div class="about__grid">
+      <div class="about__content">
+        <h2>{aboutSection.title}</h2>
+        <p>{aboutSection.description}</p>
+      </div>
+      <div class="about__spacer" aria-hidden="true"></div>
+    </div>
   </div>
 </section>
 
 <style>
+  .about {
+    background-color: #fcfcfc;
+    background-size: cover;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+  }
+
   .about__inner {
-    max-width: 52rem;
-    margin-inline: auto;
-    text-align: center;
+    min-height: 430px;
+    display: flex;
+    align-items: center;
   }
 
-  .about__inner h2 {
-    margin-bottom: 1rem;
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    width: 100%;
+    min-height: 430px;
   }
 
-  .about__inner p {
+  .about__content {
+    padding: 10px;
+  }
+
+  .about__content h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: #313131;
+    text-align: left;
+  }
+
+  .about__content p {
     margin: 0;
     font-size: 1rem;
-    line-height: 1.75;
+    line-height: 1.5;
+    color: #757575;
+    text-align: left;
+    max-width: 36rem;
+  }
+
+  .about__spacer {
+    min-height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .about__inner,
+    .about__grid {
+      min-height: 320px;
+    }
+
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__spacer {
+      display: none;
+    }
   }
 </style>

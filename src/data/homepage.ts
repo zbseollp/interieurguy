@@ -107,6 +107,7 @@ export const aboutSection = {
   title: 'Je huis vormt je basis',
   description:
     'We hebben allemaal een druk leven met allerlei verplichtingen. Juist daarom is het zo ontzettend belangrijk om thuis te komen in een huis waar jij je op je gemak voelt en helemaal tot rust kan komen. Met onze interieur- en designtips richt jij je huis nóg meer naar jouw smaak in. Lees ook onze vergelijkingen van de nieuwste interieurartikelen.',
+  backgroundImage: '/images/2023/01/Group-81111.jpg',
 };
 
 export const reviewsSection = {

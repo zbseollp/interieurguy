@@ -19,6 +19,11 @@ const blog = defineCollection({
   }),
 });
 
+const breadcrumbSchema = z.object({
+  label: z.string(),
+  href: z.string(),
+});
+
 const pages = defineCollection({
   loader: glob({
     base: './src/content/pages',
@@ -31,6 +36,7 @@ const pages = defineCollection({
     updatedDate: z.coerce.date().optional(),
     featuredImage: z.string().optional(),
     pageType: z.string().optional(),
+    breadcrumbs: z.array(breadcrumbSchema).optional(),
   }),
 });
 

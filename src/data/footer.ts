@@ -8,9 +8,14 @@ export const footerInfoLinks = [
   { label: 'Contact', href: '/contact/' },
 ];
 
+export const footerColumnHeadings = {
+  veiligheid: { label: 'Veiligheid', href: '/veiligheid/' },
+  rekkenManden: { label: 'Rekken & Manden', href: '/rekken-en-manden/' },
+};
+
 export const footerCategoryLinks = {
   veiligheid: [
-    { label: 'Beveiligingscamera buiten', href: '/beste-beveiligingscamera-buiten/' },
+    { label: 'Beveiligingscamera buiten', href: '/beste-bewegingssensoren/' },
     { label: 'Bewegingssensoren', href: '/beste-bewegingssensoren/' },
     { label: 'Slimme rookmelder', href: '/beste-slimme-rookmelder/' },
     { label: 'Draadloze deurbel', href: '/beste-draadloze-deurbel/' },
@@ -26,3 +31,15 @@ export const footerCategoryLinks = {
     { label: 'Droogtoren', href: '/beste-droogtoren/' },
   ],
 };
+
+/** Fixed order matching live Elementor footer posts widget. */
+export const footerLatestPostSlugs = [
+  'de-kracht-van-imperfectie-waarom-we-zoeken-naar-de-ziel-in-onze-woonruimte',
+  'woonwinkel-klazienaveen-begin-bij-je-raam-niet-bij-je-vloer',
+  'de-moderne-basis-waarom-rotterdam-kiest-voor-de-gietvloer',
+  'lynn-hermanussen-moeder',
+  'gerbrand-bakker-partner-m',
+  'dochter-dennis-rodman',
+];
+
+export const footerCtaBackground = '/images/2023/01/Group-79101.jpg';

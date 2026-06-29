@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import { allSiteSlugs, getPage, getCategoryItems } from '../data/pages';
 import BlogPostLayout from '../layouts/BlogPostLayout.astro';
 import ContentPageLayout from '../layouts/ContentPageLayout.astro';
+import ProductPageLayout from '../layouts/ProductPageLayout.astro';
 import ArticleLayout from '../layouts/ArticleLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -83,6 +84,9 @@ const categoryItems =
 const isCategoryHub =
   props.type === 'page' && categoryHubs.includes(props.entry.id);
 
+const isProductPage =
+  props.type === 'page' && props.entry.data.pageType === 'product';
+
 const { Content } =
   props.type === 'blog' || props.type === 'page'
     ? await render(props.entry)
@@ -96,7 +100,15 @@ const { Content } =
   </BlogPostLayout>
 )}
 
-{props.type === 'page' && Content && (
+{props.type === 'page' && Content && isProductPage && (
+  <ProductPageLayout entry={props.entry}>
+    <Header slot="header" />
+    <Content />
+    <Footer slot="footer" />
+  </ProductPageLayout>
+)}
+
+{props.type === 'page' && Content && !isProductPage && (
   <ContentPageLayout entry={props.entry}>
     <Header slot="header" />
     <Content />

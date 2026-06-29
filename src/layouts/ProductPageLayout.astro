@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import '../styles/product-page.css';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, featuredImage, updatedDate, pubDate, breadcrumbs } = entry.data;
+---
+<BaseLayout title={title} description={description} image={featuredImage}>
+  <slot name="header" slot="header" />
+  <article class="product-page">
+    <div class="container product-page__inner reveal">
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <nav class="product-page__breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <a href="/" class="breadcrumb-home" aria-label="Home"></a>
+            </li>
+            {breadcrumbs.map((crumb) => (
+              <li>
+                {crumb.href ? (
+                  <a href={crumb.href}>{crumb.label}</a>
+                ) : (
+                  <span aria-current="page">{crumb.label}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+
+      <header class="product-page__header">
+        <h1>{title}</h1>
+        {updatedDate && (
+          <p class="product-page__updated">
+            Laatst bijgewerkt:{' '}
+            {updatedDate.toLocaleDateString('nl-NL', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </p>
+        )}
+      </header>
+
+      <div class="product-page__intro-content prose"></div>
+
+      <div class="product-page__body">
+        <slot />
+      </div>
+
+      {pubDate && (
+        <p class="product-page__published">
+          Gepubliceerd op:{' '}
+          {pubDate.toLocaleDateString('nl-NL', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          })}
+        </p>
+      )}
+    </div>
+  </article>
+  <slot name="footer" slot="footer" />
+  <script>
+    import { enhanceProductPage } from '../scripts/product-page-enhance.ts';
+    enhanceProductPage();
+  </script>
+</BaseLayout>
