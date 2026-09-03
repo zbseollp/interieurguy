@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { resolveFeaturedImage } from '../lib/blogImages';
 import BaseLayout from './BaseLayout.astro';
 import '../styles/product-page.css';
 
@@ -8,7 +9,10 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, description, featuredImage, updatedDate, pubDate, breadcrumbs } = entry.data;
+const { title, description, updatedDate, pubDate, breadcrumbs } = entry.data;
+// Payload writes /media/... paths, media objects and bare bucket-root R2
+// URLs; none of those resolve when passed straight to <img src>.
+const featuredImage = resolveFeaturedImage(entry.data, entry.body);
 ---
 <BaseLayout title={title} description={description} image={featuredImage}>
   <slot name="header" slot="header" />

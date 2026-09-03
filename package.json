@@ -6,12 +6,13 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
+    "dev": "npm run prepare:blog && astro dev",
+    "build": "npm run prepare:blog && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "migrate": "python3 scripts/migrate-wordpress.py",
-    "verify:links": "python3 scripts/verify-links.py"
+    "verify:links": "python3 scripts/verify-links.py",
+    "prepare:blog": "node scripts/remove-spam-blog.mjs && node scripts/sanitize-blog.mjs && node scripts/validate-blog.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.0",
